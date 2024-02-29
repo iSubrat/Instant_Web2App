@@ -1,11 +1,17 @@
 name: Build & Upload APK
 
 on:
-  push:
-    paths:
-      - 'android/app/src/main/AndroidManifest.xml'
-      - 'lib/my_home_page.dart'
-      - 'lib/**'
+  workflow_run:
+    workflows: ["Update Files"]
+    types:
+      - completed
+
+# on:
+#   push:
+#     paths:
+#       - 'android/app/src/main/AndroidManifest.xml'
+#       - 'lib/my_home_page.dart'
+#       - 'lib/**'
 
 jobs:
   build:
