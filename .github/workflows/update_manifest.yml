@@ -22,7 +22,7 @@ jobs:
       run: pip install xmltodict
 
     - name: Run script to update Android Manifest
-      run: python update_android_manifest.py
+      run: python update_files.py
 
     - name: Commit changes
       run: |
