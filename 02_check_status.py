@@ -35,7 +35,8 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           connection.commit()
           print("Status column updated to 'started building'")
         else:
-          raise RuntimeError("There is no app for build.")
+          sys.exit(0)
+          # raise RuntimeError("There is no app for build.")
 
         # Close the cursor and connection
         cursor.close()
