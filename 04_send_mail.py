@@ -1,8 +1,12 @@
-import mysql.connector
-import sys
 import os
+import sys
+import smtplib
+import mysql.connector
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def execute_query(db_host, db_username, db_password, db_database, query):
+    global id, appname, username, recipient_email
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -27,11 +31,23 @@ def execute_query(db_host, db_username, db_password, db_database, query):
         # Print the rows
         if row:
           id = row[0]
-          appname = row[1]
+          pattern = re.compile(r'[^a-zA-Z0-9_]')
+          appname = str(id).zfill(4) + '_' + pattern.sub('', row[1]) + '.apk'
           username = row[3]
-          email = row[5]
+          recipient_email = row[5]
           while cursor.nextset():
             pass
+          smtp_host = os.environ['SMTP_HOST']
+          smtp_port = os.environ['SMTP_PORT']
+          email_username = os.environ['EMAIL_USERNAME']
+          email_password = os.environ['EMAIL_PASSWORD']
+          sender_email = email_username
+          sender_password = email_password
+          subject = 'Your App is Ready to Download'
+          message = f'Hi,\n Please download your app by clicking link: http://appcollection.in/InstantWeb2App/downloads/{appname}'
+        
+          send_email(sender_email, sender_password, recipient_email, subject, message)
+
           # Update the status column to "Updated"
           update_query = "UPDATE app_data SET status = 'email sent' WHERE id = %s"
           cursor.execute(update_query, (id,))
