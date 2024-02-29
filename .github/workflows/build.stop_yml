@@ -26,6 +26,12 @@ jobs:
         
       - name: Run script to update Files
         run: python check_updated.py
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
 
       - name: Set APK File Name
         id: set_apk_name
