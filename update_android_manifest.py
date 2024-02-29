@@ -1,22 +1,26 @@
-import xml.etree.ElementTree as ET
+def replace_text_in_file(file_path, find_text, new_text):
+    try:
+        # Open the file in read mode
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
 
-def update_android_manifest(manifest_path):
-    # Define the namespace
-    ns_android = {"android": "http://schemas.android.com/apk/res/android"}
+        # Replace the line containing the find_text with the new_text
+        updated_lines = [new_text if find_text in line else line for line in lines]
 
-    # Parse the XML file
-    tree = ET.parse(manifest_path)
-    root = tree.getroot()
+        # Open the file in write mode and write the updated data
+        with open(file_path, 'w') as file:
+            file.writelines(updated_lines)
+        
+        print("Text replaced successfully.")
 
-    # Find the application element
-    application_element = root.find(".//application")
-
-    # Update the android:label attribute
-    application_element.set("{http://schemas.android.com/apk/res/android}label", "Subrat")
-
-    # Write the changes back to the file
-    tree.write(manifest_path, xml_declaration=True, encoding='utf-8')
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print("An error occurred:", e)
 
 if __name__ == "__main__":
-    manifest_path = "android/app/src/main/AndroidManifest.xml"
-    update_android_manifest(manifest_path)
+    app_name = AppName0157
+    file_path = "android/app/src/main/AndroidManifest.xml"  # Replace with the path to your text file
+    find_text = "android:label="      # Replace with the text to be replaced
+    new_text = f'''android:label="{app_name}"'''      # Replace with the new text
+    replace_text_in_file(file_path, find_text, new_text)
