@@ -53,6 +53,12 @@ def execute_query(db_host, db_username, db_password, db_database, query):
             username = row[3]
             email_address = row[5]
             print(id, app_name, web_url, username, email_address)
+            
+            # Update the status column to "Updated"
+            update_query = "UPDATE app_data SET status = 'building' WHERE id = %s"
+            cursor.execute(update_query, (id,))
+            connection.commit()
+            print("Status column updated to 'Updated'")
 
         # Close the cursor and connection
         cursor.close()
