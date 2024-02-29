@@ -5,6 +5,7 @@ def check_updated():
   if updated:
     return True
   else:
+    raise RuntimeError("Workflow execution halted due to an error")
     sys.exit(0)
 
 
