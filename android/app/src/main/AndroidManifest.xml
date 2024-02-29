@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="Geo entertainment tv "
+        android:label="Prime Asia tv "
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
