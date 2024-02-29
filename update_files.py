@@ -62,7 +62,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
         print("Error executing query:", e)
 
 if __name__ == "__main__":
-    # MySQL database credentials (temp changes)
+    # MySQL database credentials
     host = os.environ['DB_HOST']
     username = os.environ['DB_USERNAME']
     password = os.environ['DB_PASSWORD']
