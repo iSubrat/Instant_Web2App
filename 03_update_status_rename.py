@@ -2,6 +2,7 @@ import mysql.connector
 from ftplib import FTP
 import sys
 import os
+import re
 
 def execute_query(db_host, db_username, db_password, db_database, query):
     global appname
@@ -29,7 +30,8 @@ def execute_query(db_host, db_username, db_password, db_database, query):
         # Print the rows
         if row:
           id = row[0]
-          appname = row[1]
+          pattern = re.compile(r'[^a-zA-Z0-9_]')
+          appname = str(id).zfill(4) + '_' + pattern.sub('', row[1]) + '.apk'
           while cursor.nextset():
             pass
             
@@ -79,7 +81,7 @@ if __name__ == "__main__":
     host = os.environ['FTP_SERVER']
     username = os.environ['FTP_USERNAME']
     password = os.environ['FTP_PASSWORD']
-    old_name = 'my_app.apk'
+    old_name = 'app-release.apk'
     new_name = appname
     
     rename_ftp_file(host, username, password, old_name, new_name)
