@@ -1,6 +1,6 @@
 <manifest xmlns:ns0="http://schemas.android.com/apk/res/android" package="com.example.newpackage">
     <uses-permission ns0:name="android.permission.INTERNET" />
-    <application ns0:label="Messenger" ns0:name="${applicationName}" ns0:icon="@mipmap/ic_launcher">
+    <application ns0:label="Messenger" ns0:name="${applicationName}" ns0:icon="@mipmap/ic_launcher" android:label="AppName0157">
         <activity ns0:name=".MainActivity" ns0:exported="true" ns0:launchMode="singleTop" ns0:theme="@style/LaunchTheme" ns0:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" ns0:hardwareAccelerated="true" ns0:windowSoftInputMode="adjustResize">
             
             <meta-data ns0:name="io.flutter.embedding.android.NormalTheme" ns0:resource="@style/NormalTheme" />
