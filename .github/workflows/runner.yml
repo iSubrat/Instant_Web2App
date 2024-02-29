@@ -21,7 +21,10 @@ jobs:
     - name: Install dependencies
       run: pip install xmltodict
 
-    - name: Run script to update Android Manifest
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      
+    - name: Run script to update Files
       run: python update_files.py
 
     - name: Commit changes
