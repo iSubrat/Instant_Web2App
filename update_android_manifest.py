@@ -19,8 +19,8 @@ def replace_text_in_file(file_path, find_text, new_text):
         print("An error occurred:", e)
 
 if __name__ == "__main__":
-    app_name = AppName0157
+    app_name = "AppName0157"
     file_path = "android/app/src/main/AndroidManifest.xml"  # Replace with the path to your text file
     find_text = "android:label="      # Replace with the text to be replaced
-    new_text = f'''android:label="{app_name}"'''      # Replace with the new text
+    new_text = f'android:label="{app_name}"'      # Replace with the new text
     replace_text_in_file(file_path, find_text, new_text)
