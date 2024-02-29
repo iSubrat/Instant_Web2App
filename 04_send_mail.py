@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import smtplib
 import mysql.connector
