@@ -42,10 +42,10 @@ def execute_query(host, username, password, database, query):
         cursor.execute(query)
 
         # Fetch all the rows
-        rows = cursor.fetchall()
+        rows = cursor.fetchone()
 
         # Print the rows
-        for row in rows:
+        if row:
             print(row)
 
         # Close the cursor and connection
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     database = os.environ['DB_NAME']
 
     # Example query
-    query = "SELECT * FROM app_data"
+    query = "SELECT * FROM app_data WHERE status IS NULL"
 
     # Execute the query
     execute_query(host, username, password, database, query)
