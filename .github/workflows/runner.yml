@@ -81,6 +81,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           commands: |
-            put ./build/app/outputs/flutter-apk/ domains/appcollection.in/public_html/InstantWeb2App/downloads/
-            rename domains/appcollection.in/public_html/InstantWeb2App/downloads/app-release.apk domains/appcollection.in/public_html/InstantWeb2App/downloads/${{env.APK_NAME}}
-            delete domains/appcollection.in/public_html/InstantWeb2App/downloads/app-release.apk.sha1
+            put ./build/app/outputs/flutter-apk/ ./
+            rename app-release.apk ${{env.APK_NAME}}
+            delete app-release.apk.sha1
