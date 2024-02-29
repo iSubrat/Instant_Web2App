@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # Execute the query
     execute_query(host, username, password, database, query)
     
-    host = os.environ['FTP_HOST']
+    host = os.environ['FTP_SERVER']
     username = os.environ['FTP_USERNAME']
     password = os.environ['FTP_PASSWORD']
     old_name = 'my_app.apk'
