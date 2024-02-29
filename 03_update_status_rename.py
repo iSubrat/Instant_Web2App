@@ -1,8 +1,10 @@
 import mysql.connector
+from ftplib import FTP
 import sys
 import os
 
 def execute_query(db_host, db_username, db_password, db_database, query):
+    global appname
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -27,6 +29,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
         # Print the rows
         if row:
           id = row[0]
+          appname = row[1]
           while cursor.nextset():
             pass
             
@@ -45,6 +48,21 @@ def execute_query(db_host, db_username, db_password, db_database, query):
     except mysql.connector.Error as e:
         print("Error executing query:", e)
 
+def rename_ftp_file(host, username, password, old_name, new_name):
+    try:
+        # Connect to the FTP server
+        with FTP(host) as ftp:
+            # Login to the FTP server
+            ftp.login(username, password)
+
+            # Rename the file
+            ftp.rename(old_name, new_name)
+            print(f"File '{old_name}' renamed to '{new_name}' successfully.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
 if __name__ == "__main__":
     # MySQL database credentials temp
     host = os.environ['DB_HOST']
@@ -57,3 +75,12 @@ if __name__ == "__main__":
 
     # Execute the query
     execute_query(host, username, password, database, query)
+    
+    host = os.environ['FTP_HOST']
+    username = os.environ['FTP_USERNAME']
+    password = os.environ['FTP_PASSWORD']
+    old_name = 'my_app.apk'
+    new_name = appname
+    
+    rename_ftp_file(host, username, password, old_name, new_name)
+    
