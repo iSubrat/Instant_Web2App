@@ -26,15 +26,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
 
         # Print the rows
         if row:
-          id = row[0]
-          while cursor.nextset():
-            pass
-            
-          # Update the status column to "Updated"
-          update_query = "UPDATE app_data SET status = 'built' WHERE id = %s"
-          cursor.execute(update_query, (id,))
-          connection.commit()
-          print("Status column updated to 'built'")
+          pass
         else:
           raise RuntimeError("Workflow execution halted due to an error")
 
