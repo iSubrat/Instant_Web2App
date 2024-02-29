@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  Send Email:
+  send_email:
     runs-on: ubuntu-latest
 
     steps:
