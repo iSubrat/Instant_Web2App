@@ -1,7 +1,7 @@
 import sys
 
 def check_updated():
-  updated = True
+  updated = False
   if updated:
     return True
   else:
