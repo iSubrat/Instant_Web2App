@@ -9,6 +9,8 @@ from email.mime.multipart import MIMEMultipart
 
 def send_email(sender_email, sender_password, username, recipient_email, subject, appname, appname_link):
     try:
+        email_host = os.environ['EMAIL_HOST']
+        email_port = os.environ['EMAIL_PORT']
         # Setup the email message
         email_message = MIMEMultipart()
         email_message['From'] = sender_email
