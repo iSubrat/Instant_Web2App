@@ -30,7 +30,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           while cursor.nextset():
             pass
           # Update the status column to "Updated"
-          update_query = "UPDATE app_data SET status = 'building' WHERE id = %s"
+          update_query = "UPDATE app_data SET status = 'started building' WHERE id = %s"
           cursor.execute(update_query, (id,))
           connection.commit()
           print("Status column updated to 'started building'")
