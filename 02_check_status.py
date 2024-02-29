@@ -35,9 +35,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           connection.commit()
           print("Status column updated to 'started building'")
         else:
-          print("Stopping workflow due to status check result.")
-          sys.exit(1)
-          # raise RuntimeError("There is no app for build.")
+          raise RuntimeError("There is no app for build.")
 
         # Close the cursor and connection
         cursor.close()
