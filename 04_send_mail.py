@@ -66,7 +66,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           sender_email = email_username
           sender_password = email_password
           subject = 'Your App is Ready to Download'
-          message = f'Hi,\n Please download your app by clicking link: http://appcollection.in/InstantWeb2App/downloads/{appname}'
+          message = f'Hi,\n Please download your app by clicking link: https://appcollection.in/InstantWeb2App/downloads/{appname}'
         
           send_email(sender_email, sender_password, recipient_email, subject, message)
 
