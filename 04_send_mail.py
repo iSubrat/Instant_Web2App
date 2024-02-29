@@ -6,6 +6,29 @@ import mysql.connector
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+def send_email(sender_email, sender_password, recipient_email, subject, message):
+    try:
+        email_host = os.environ['EMAIL_HOST']
+        email_port = os.environ['EMAIL_PORT']
+        # Setup the email message
+        email_message = MIMEMultipart()
+        email_message['From'] = sender_email
+        email_message['To'] = recipient_email
+        email_message['Subject'] = subject
+
+        # Attach the message body
+        email_message.attach(MIMEText(message, 'plain'))
+
+        # Create SMTP session for sending the mail
+        with smtplib.SMTP_SSL(email_host, email_port) as session:
+            session.login(sender_email, sender_password)
+            session.sendmail(sender_email, recipient_email, email_message.as_string())
+
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"Error: {e}")
+
+
 def execute_query(db_host, db_username, db_password, db_database, query):
     global id, appname, username, recipient_email
     try:
@@ -38,8 +61,6 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           recipient_email = row[5]
           while cursor.nextset():
             pass
-          smtp_host = os.environ['SMTP_HOST']
-          smtp_port = os.environ['SMTP_PORT']
           email_username = os.environ['EMAIL_USERNAME']
           email_password = os.environ['EMAIL_PASSWORD']
           sender_email = email_username
