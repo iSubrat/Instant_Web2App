@@ -42,13 +42,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set APK File Name
-        id: set_apk_name
-        run: |
-          commit_message=$(git log -1 --pretty=%B)
-          apk_name="${commit_message// /_}_app.apk"
-          echo "APK_NAME=$apk_name" >> $GITHUB_ENV
-          echo $apk_name  # Corrected this line
+      # - name: Set APK File Name
+      #   id: set_apk_name
+      #   run: |
+      #     commit_message=$(git log -1 --pretty=%B)
+      #     apk_name="${commit_message// /_}_app.apk"
+      #     echo "APK_NAME=$apk_name" >> $GITHUB_ENV
+      #     echo $apk_name  # Corrected this line
 
       - name: Setup Java
         uses: actions/setup-java@v2
@@ -82,5 +82,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           commands: |
             put ./build/app/outputs/flutter-apk/ ./
-            rename app-release.apk ${{env.APK_NAME}}
+            # rename app-release.apk ${{env.APK_NAME}}
             delete app-release.apk.sha1
