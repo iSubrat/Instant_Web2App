@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.erzabtei-beuron.de/_SA-mobile/schott/schott_anz/index.html'),
+                  url: Uri.parse('https://hum.tv/live/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
