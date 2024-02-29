@@ -1,6 +1,9 @@
 import xml.etree.ElementTree as ET
 
 def update_android_manifest(manifest_path):
+    # Define the namespace
+    ns_android = {"android": "http://schemas.android.com/apk/res/android"}
+
     # Parse the XML file
     tree = ET.parse(manifest_path)
     root = tree.getroot()
@@ -12,7 +15,7 @@ def update_android_manifest(manifest_path):
     application_element.set("{http://schemas.android.com/apk/res/android}label", "Subrat")
 
     # Write the changes back to the file
-    tree.write(manifest_path)
+    tree.write(manifest_path, xml_declaration=True, encoding='utf-8', default_namespace='http://schemas.android.com/apk/res/android')
 
 if __name__ == "__main__":
     manifest_path = "android/app/src/main/AndroidManifest.xml"
