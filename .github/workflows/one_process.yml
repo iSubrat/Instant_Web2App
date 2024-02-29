@@ -1,4 +1,4 @@
-name: Fetch Data & Make Changes
+name: OneProcess
 on:
   push:
       branches: [ "main" ]
