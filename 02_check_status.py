@@ -28,7 +28,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
         if row:
           pass
         else:
-          raise RuntimeError("Workflow execution halted due to an error")
+          raise RuntimeError("App is not available to build")
 
         # Close the cursor and connection
         cursor.close()
