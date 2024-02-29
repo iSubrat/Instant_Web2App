@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
-      - name: Run script to update Files
-        run: python check_updated.py
+      - name: Run script to check status
+        run: python check_status.py
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           DB_HOST: ${{ secrets.DB_HOST }}
@@ -74,5 +74,13 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           commands: |
             put ./build/app/outputs/flutter-apk/ ./
-            rename app-release.apk ${{env.APK_NAME}}
             delete app-release.apk.sha1
+            
+      - name: Run script to update status & rename file
+        run: python update_status_rename.py
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
