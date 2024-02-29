@@ -23,6 +23,7 @@ def replace_text_in_file(file_path, find_text, new_text):
         print(f"An error occurred while replacing text in {file_path}: {e}")
 
 def execute_query(host, username, password, database, query):
+    global id, app_name, web_url, username, email_address
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -46,7 +47,12 @@ def execute_query(host, username, password, database, query):
 
         # Print the rows
         if row:
-            print(row)
+            id = row[0]
+            app_name = row[1]
+            web_url = row[2]
+            username = row[3]
+            email_address = row[5]
+            print(id, app_name, web_url, username, email_address)
 
         # Close the cursor and connection
         cursor.close()
@@ -69,8 +75,6 @@ if __name__ == "__main__":
     execute_query(host, username, password, database, query)
 
     # Replace text in files
-    app_name = "MyAppName"
-    web_url = "https://www.google.com"
     file_path = ["android/app/src/main/AndroidManifest.xml", "lib/my_home_page.dart"]  # Replace with the path to your text file
     find_text = ["android:label=", "url: Uri.parse("]      # Replace with the text to be replaced
     new_text = [f'        android:label="{app_name}"\n', f"                  url: Uri.parse('{web_url}'),\n"]      # Replace with the new text
