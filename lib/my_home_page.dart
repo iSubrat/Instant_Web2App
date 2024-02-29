@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://chat.mistral.ai/chat/'),
+                  url: Uri.parse('https://agritech.tnau.ac.in/agriculture/agri_cereals_rice8.html'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
