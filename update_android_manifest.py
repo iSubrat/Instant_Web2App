@@ -9,7 +9,7 @@ def update_android_manifest(manifest_path):
     application_element = root.find(".//application")
 
     # Update the android:label attribute
-    application_element.set("android:label", "Subrat")
+    application_element.set("{http://schemas.android.com/apk/res/android}label", "Subrat")
 
     # Write the changes back to the file
     tree.write(manifest_path)
