@@ -22,15 +22,15 @@ def replace_text_in_file(file_path, find_text, new_text):
     except Exception as e:
         print(f"An error occurred while replacing text in {file_path}: {e}")
 
-def execute_query(host, username, password, database, query):
+def execute_query(db_host, db_username, db_password, db_database, query):
     global id, app_name, web_url, username, email_address
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
-            host=host,
-            user=username,
-            password=password,
-            database=database
+            host=db_host,
+            user=db_username,
+            password=db_password,
+            database=db_database
         )
 
         if connection.is_connected():
