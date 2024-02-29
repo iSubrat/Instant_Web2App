@@ -22,7 +22,7 @@ jobs:
       run: pip install -r requirements.txt
       
     - name: Run script to update Files
-      run: python update_files.py
+      run: python 01_update_files.py
       env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           DB_HOST: ${{ secrets.DB_HOST }}
