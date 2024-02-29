@@ -15,7 +15,7 @@ def update_android_manifest(manifest_path):
     application_element.set("{http://schemas.android.com/apk/res/android}label", "Subrat")
 
     # Write the changes back to the file
-    tree.write(manifest_path, xml_declaration=True, encoding='utf-8', default_namespace='http://schemas.android.com/apk/res/android')
+    tree.write(manifest_path, xml_declaration=True, encoding='utf-8')
 
 if __name__ == "__main__":
     manifest_path = "android/app/src/main/AndroidManifest.xml"
