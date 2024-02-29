@@ -1,5 +1,6 @@
 import mysql.connector
 import sys
+import os
 
 def replace_text_in_file(file_path, find_text, new_text):
     try:
