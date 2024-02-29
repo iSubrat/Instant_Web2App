@@ -1,3 +1,6 @@
+import mysql.connector
+import sys
+
 def replace_text_in_file(file_path, find_text, new_text):
     try:
         # Open the file in read mode
@@ -11,18 +14,64 @@ def replace_text_in_file(file_path, find_text, new_text):
         with open(file_path, 'w') as file:
             file.writelines(updated_lines)
         
-        print("Text replaced successfully.")
+        print(f"Text replaced successfully in {file_path}.")
 
     except FileNotFoundError:
-        print("File not found.")
+        print(f"File {file_path} not found.")
     except Exception as e:
-        print("An error occurred:", e)
+        print(f"An error occurred while replacing text in {file_path}: {e}")
+
+def execute_query(host, username, password, database, query):
+    try:
+        # Connect to the MySQL server
+        connection = mysql.connector.connect(
+            host=host,
+            user=username,
+            password=password,
+            database=database
+        )
+
+        if connection.is_connected():
+            print("Connected to MySQL database")
+
+        # Create a cursor object
+        cursor = connection.cursor()
+
+        # Execute the query
+        cursor.execute(query)
+
+        # Fetch all the rows
+        rows = cursor.fetchall()
+
+        # Print the rows
+        for row in rows:
+            print(row)
+
+        # Close the cursor and connection
+        cursor.close()
+        connection.close()
+
+    except mysql.connector.Error as e:
+        print("Error executing query:", e)
 
 if __name__ == "__main__":
+    # MySQL database credentials
+    host = os.environ['DB_HOST']
+    username = os.environ['DB_USERNAME']
+    password = os.environ['DB_PASSWORD']
+    database = os.environ['DB_NAME']
+
+    # Example query
+    query = "SELECT * FROM your_table"
+
+    # Execute the query
+    execute_query(host, username, password, database, query)
+
+    # Replace text in files
     app_name = "MyAppName"
     web_url = "https://www.google.com"
     file_path = ["android/app/src/main/AndroidManifest.xml", "lib/my_home_page.dart"]  # Replace with the path to your text file
     find_text = ["android:label=", "url: Uri.parse("]      # Replace with the text to be replaced
-    new_text =  [f'        android:label="{app_name}"\n', f"                  url: Uri.parse('{web_url}'),\n"]      # Replace with the new text
+    new_text = [f'        android:label="{app_name}"\n', f"                  url: Uri.parse('{web_url}'),\n"]      # Replace with the new text
     for fp, ft, nt in zip(file_path, find_text, new_text):
         replace_text_in_file(fp, ft, nt)
