@@ -1,0 +1,36 @@
+name: Update Android Manifest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update_manifest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install xmltodict
+
+    - name: Run script to update Android Manifest
+      run: python update_android_manifest.py
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -a -m "Update Android Manifest" || true
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
