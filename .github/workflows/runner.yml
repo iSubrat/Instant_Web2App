@@ -1,4 +1,4 @@
-name: Update Android Manifest
+name: Fetch Data, Make Changes, Build APK, Upload APK & Send Email
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update_manifest:
+  update_files:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,3 +34,53 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GIT_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set APK File Name
+        id: set_apk_name
+        run: |
+          commit_message=$(git log -1 --pretty=%B)
+          apk_name="${commit_message// /_}_app.apk"
+          echo "APK_NAME=$apk_name" >> $GITHUB_ENV
+          echo $apk_name  # Corrected this line
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.8'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Upload APK and App Bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-artifacts
+          path: build/app/outputs/flutter-apk/
+
+      - name: FTP Transfer
+        uses: joutvhu/ftp-transfer@v1
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          port: 21
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          commands: |
+            put ./build/app/outputs/flutter-apk/ domains/appcollection.in/public_html/InstantWeb2App/downloads/
+            rename domains/appcollection.in/public_html/InstantWeb2App/downloads/app-release.apk domains/appcollection.in/public_html/InstantWeb2App/downloads/${{env.APK_NAME}}
+            delete domains/appcollection.in/public_html/InstantWeb2App/downloads/app-release.apk.sha1
