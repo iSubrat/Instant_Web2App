@@ -43,7 +43,7 @@ def execute_query(host, username, password, database, query):
         cursor.execute(query)
 
         # Fetch all the rows
-        rows = cursor.fetchone()
+        row = cursor.fetchone()
 
         # Print the rows
         if row:
