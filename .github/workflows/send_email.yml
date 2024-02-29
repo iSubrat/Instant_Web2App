@@ -24,7 +24,7 @@ jobs:
       run: pip install -r requirements.txt
       
     - name: Run script to Send Email
-      run: python send_mail.py
+      run: python 04_send_mail.py
       env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           DB_HOST: ${{ secrets.DB_HOST }}
