@@ -87,7 +87,7 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
         #     email_message.attach(logo_part)
 
         # Create SMTP session for sending the mail
-        with smtplib.SMTP_SSL(smtp_host, smtp_port) as session:
+        with smtplib.SMTP_SSL(email_host, email_port) as session:
             session.login(sender_email, sender_password)
             session.sendmail(sender_email, recipient_email, email_message.as_string())
 
