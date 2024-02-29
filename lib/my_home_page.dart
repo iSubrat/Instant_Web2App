@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('http://tv.primeasianews.com/lg-app/'),
+                  url: Uri.parse('https://play.webrcade.com/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
