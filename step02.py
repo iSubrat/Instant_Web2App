@@ -53,7 +53,7 @@ if __name__ == "__main__":
     database = os.environ['DB_NAME']
 
     # Example query
-    query = "SELECT * FROM app_data WHERE status = 'building'"
+    query = "SELECT * FROM app_data WHERE status = 'building' ORDER BY id DESC LIMIT 1"
 
     # Execute the query
     execute_query(host, username, password, database, query)
