@@ -14,6 +14,7 @@ def update_manifest():
 
     # Write the changes back to the file
     tree.write(manifest_path)
+    # ok test
 
 if __name__ == "__main__":
     update_manifest()
