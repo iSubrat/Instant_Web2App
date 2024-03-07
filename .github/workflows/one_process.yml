@@ -67,11 +67,11 @@ jobs:
     - name: Build APK
       run: flutter build apk
 
-    - name: Upload APK and App Bundle
-      uses: actions/upload-artifact@v2
-      with:
-        name: app-artifacts
-        path: build/app/outputs/flutter-apk/
+    # - name: Upload APK and App Bundle
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: app-artifacts
+    #     path: build/app/outputs/flutter-apk/
 
     - name: FTP Transfer
       uses: joutvhu/ftp-transfer@v1
