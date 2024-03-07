@@ -108,7 +108,3 @@ jobs:
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-          
-    - name: Delete artifact files
-      run: |
-        rm -rf $GITHUB_WORKSPACE/build/app/outputs/flutter-apk/
