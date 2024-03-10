@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:connectivity/connectivity.dart';
 import 'no_internet.dart';
-
+import 'publish.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -105,7 +104,42 @@ class _MyHomePageState extends State<MyHomePage> {
       return const NoInternetScreen();
     } else {
       // Display the WebView when there is an internet connection
-      return _buildWebView();
+      return Container(
+        color: const Color(0xFFE72A73), // Background color
+        child: Column(
+          children: [
+            Expanded(
+              child: _buildWebView(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Get this app live on Play Store',
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                  ),
+                  const SizedBox(width: 8),
+                  // Adjust spacing between text and button
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to the PublishScreen when the button is clicked
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PublishScreen()),
+                      );
+                    },
+                    child:
+                        Text("Publish Now", style: TextStyle(fontSize: 16.0)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -129,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://channelmyanmar.org/'),
+                  url: Uri.parse('https://google.com/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
@@ -151,7 +185,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
   }
-
 
   // Get InAppWebViewOptions
   InAppWebViewGroupOptions _getInAppWebViewOptions() {
