@@ -81,7 +81,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
 
 if __name__ == "__main__":
     try:
-      # MySQL database credentials temp
+      # MySQL database credentials
       host = os.environ['DB_HOST']
       username = os.environ['DB_USERNAME']
       password = os.environ['DB_PASSWORD']
