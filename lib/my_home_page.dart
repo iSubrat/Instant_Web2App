@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://ebangyo.com'),
+                  url: Uri.parse('htpps://wepoi.github.io/fdstudio/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
