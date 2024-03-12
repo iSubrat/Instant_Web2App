@@ -92,5 +92,7 @@ if __name__ == "__main__":
   
       # Execute the query
       execute_query(host, username, password, database, query)
+      with open(file_name, 'w') as file:
+          file.write(content)
     except Exception as e:
       raise RuntimeError("Process Aborted.")
