@@ -139,7 +139,9 @@ if __name__ == "__main__":
       download_image('https://appcollection.in/InstantWeb2App/icon.png', 'ic_launcher.png')
       try:
           if len(app_logo_name)>5:
+              print(f'downloading {app_logo_name} file.')
               download_image('https://appcollection.in/InstantWeb2App/V04/uploads/'+app_logo_name, 'ic_launcher.'+icon_url.split('.')[-1])
+              print(f'Custom logo downloaded.')
           else:
               icon_url = get_logo('.'.join(web_url.split('/')[2].split('.')[-2:]))
               download_image(icon_url, 'ic_launcher.'+icon_url.split('.')[-1])
