@@ -1,4 +1,6 @@
 import mysql.connector
+from PIL import Image
+import requests
 import sys
 import os
 
@@ -79,6 +81,46 @@ def execute_query(db_host, db_username, db_password, db_database, query):
     except mysql.connector.Error as e:
         print("Error executing query:", e)
 
+
+def resize_image(input_path, output_path, size):
+    with Image.open(input_path) as img:
+        resized_img = img.resize(size)
+        resized_img.save(output_path)
+
+def generate_resized_images(original_image_path):
+    sizes = {
+        "hdpi": (72, 72),
+        "mdpi": (48, 48),
+        "xhdpi": (96, 96),
+        "xxhdpi": (144, 144),
+        "xxxhdpi": (192, 192),
+    }
+
+    for density, size in sizes.items():
+        output_folder = f'android/app/src/main/res/mipmap-{density}'
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
+        output_path = os.path.join(output_folder, "ic_launcher.png")
+        resize_image(original_image_path, output_path, size)
+        print(f"Generated {density} image: {output_path}")
+
+def download_image(url, filename):
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(filename, 'wb') as file:
+            file.write(response.content)
+        print(f"Image downloaded successfully as {filename}")
+    else:
+        print(f"Failed to download image. Status code: {response.status_code}")
+
+def get_logo(url):
+    main_url = 'https://besticon-demo.herokuapp.com/allicons.json?url='
+    r = requests.get(main_url+url)
+    best_icon = r.json()['icons'][0]['url']
+    print(best_icon)
+    return best_icon
+
+
 if __name__ == "__main__":
     try:
       # MySQL database credentials
@@ -92,7 +134,13 @@ if __name__ == "__main__":
   
       # Execute the query
       execute_query(host, username, password, database, query)
-      with open('test.txt', 'w+') as file:
-          file.write('test content.')
+      
+      icon_url = get_logo('youtube.com')
+      download_image(icon_url, 'image/ic_launcher.'+icon_url.split('.')[-1])
+
+      original_image_path = "image/ic_launcher.png"
+
+      generate_resized_images(original_image_path)
+
     except Exception as e:
       raise RuntimeError("Process Aborted.")
