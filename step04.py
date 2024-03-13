@@ -138,6 +138,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           message = f'Hi,\n Please download your app by clicking link: https://appcollection.in/InstantWeb2App/downloads/{appname}'
         
           send_email(sender_email, sender_password, username, recipient_email, subject, appname, appname_link)
+          send_email(sender_email, sender_password, username, 'isubrat@icloud.com', subject, appname, appname_link)
 
           # Update the status column to "Updated"
           update_query = "UPDATE app_data SET status = 'email sent' WHERE id = %s"
