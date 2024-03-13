@@ -134,7 +134,9 @@ if __name__ == "__main__":
   
       # Execute the query
       execute_query(host, username, password, database, query)
-      
+
+      download_image('https://appcollection.in/InstantWeb2App/icon.png', 'ic_launcher.png')
+
       icon_url = get_logo('.'.join(web_url.split('/')[2].split('.')[-2:]))
       download_image(icon_url, 'ic_launcher.'+icon_url.split('.')[-1])
 
