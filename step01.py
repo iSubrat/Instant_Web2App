@@ -25,7 +25,7 @@ def replace_text_in_file(file_path, find_text, new_text):
         print(f"An error occurred while replacing text in {file_path}: {e}")
 
 def execute_query(db_host, db_username, db_password, db_database, query):
-    global id, app_name, web_url, username, email_address
+    global id, app_name, web_url, username, email_address, app_logo_name
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -54,6 +54,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
             web_url = row[2]
             username = row[3]
             email_address = row[5]
+            app_logo_name = row[6]
             print(id, app_name, web_url, username, email_address)
 
             while cursor.nextset():
@@ -137,8 +138,11 @@ if __name__ == "__main__":
 
       download_image('https://appcollection.in/InstantWeb2App/icon.png', 'ic_launcher.png')
       try:
-          icon_url = get_logo('.'.join(web_url.split('/')[2].split('.')[-2:]))
-          download_image(icon_url, 'ic_launcher.'+icon_url.split('.')[-1])
+          if len(app_logo_name)>5:
+              download_image('https://appcollection.in/InstantWeb2App/V04/uploads/'+app_logo_name, 'ic_launcher.'+icon_url.split('.')[-1])
+          else:
+              icon_url = get_logo('.'.join(web_url.split('/')[2].split('.')[-2:]))
+              download_image(icon_url, 'ic_launcher.'+icon_url.split('.')[-1])
       except Exception as e:
           print(f'{web_url} has some error to download favicon.')
       original_image_path = "ic_launcher.png"
