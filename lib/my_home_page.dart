@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.xbox.com/en-US/auth/msa?action=loggedIn&locale_hint=en-US'),
+                  url: Uri.parse('https://www.xbox.com/en-US/play'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
