@@ -123,7 +123,7 @@ def get_logo(url):
 
 if __name__ == "__main__":
     try:
-      # MySQL database credentials temp
+      # MySQL database credentials
       host = os.environ['DB_HOST']
       username = os.environ['DB_USERNAME']
       password = os.environ['DB_PASSWORD']
