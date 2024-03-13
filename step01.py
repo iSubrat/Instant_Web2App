@@ -136,9 +136,9 @@ if __name__ == "__main__":
       execute_query(host, username, password, database, query)
       
       icon_url = get_logo('youtube.com')
-      download_image(icon_url, 'image/ic_launcher.'+icon_url.split('.')[-1])
+      download_image(icon_url, 'ic_launcher.'+icon_url.split('.')[-1])
 
-      original_image_path = "image/ic_launcher.png"
+      original_image_path = "ic_launcher.png"
 
       generate_resized_images(original_image_path)
 
