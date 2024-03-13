@@ -1,3 +1,5 @@
 xmltodict
 mysql-connector-python
 emails
+pillow
+requests
