@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def send_email(sender_email, sender_password, username, recipient_email, subject, appname, appname_link):
+def send_email(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link):
     try:
         email_host = os.environ['EMAIL_HOST']
         email_port = os.environ['EMAIL_PORT']
@@ -20,65 +20,69 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
         # Styling
         html_message = f"""
         <html>
-        <style>
-            body {{
-                font-family: 'Arial', sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: white;
-            }}
-            header {{
-                text-align: center;
-                background-color: #E72A73;
-                color: #ffffff;
-                padding: 20px 0;
-            }}
-            div {{
-                background-color: white;
-                color: #000;
-                font-size: 14px;
-                margin: 10px;
-            }}
-            .button {{
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #E72A73; /* Blue color */
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                font-size: 16px;
-                margin-bottom: 10px;
-            }}
-            .button-secondary {{
-                background-color: #f4be41;
-                font-weight: bold;
-                color: white;
-            }}
-            #hidden_url {{
-                text-decoration: none;
-                color: inherit;
-            }}
-        </style>
-        <body>
-        <a id="hidden_url" href="https://play.google.com/store/apps/details?id=com.appcollection.web2app">
-            <header>
-                <h1>Web2App</h1>
-                <p>Convert Websites to Android Apps</p>
-            </header>
-        </a>
-            <div style="text-align: left;">
-                <p>Dear {username},<br>Congratulations! Your app {appname} is ready to download. Please click the below button:</p>
-                <a href="https://appcollection.in/InstantWeb2App/downloads/{appname_link}" class="button">Download Your App ({appname_link})</a><br>
-                <br>
-                <p>Publish your app on the Play Store for just $50!</p>
-                <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play." class="button button-secondary">Publish Now</a>
-                <br>
-                <br>
-                <h4>- Subrat Gupta<br>Web2App Team</h4>
-            </div>
-        </body>
-    </html>
-        """
+            <style>
+                body {{
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: white;
+                }}
+                header {{
+                    text-align: center;
+                    background-color: #E72A73;
+                    color: #ffffff;
+                    padding: 20px 0;
+                }}
+                div {{
+                    background-color: white;
+                    color: #000;
+                    font-size: 14px;
+                    margin: 10px;
+                }}
+                .button {{
+                    display: inline-flex; /* Use flexbox */
+                    align-items: center; /* Center vertically */
+                    padding: 10px 20px;
+                    background-color: #E72A73; /* Blue color */
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }}
+                .button img {{
+                    border-radius: 10%; /* Make image corners round */
+                    margin-right: 10px; /* Add some space between the image and text */
+                }}
+                .button-secondary {{
+                    background-color: #f4be41;
+                    font-weight: bold;
+                    color: white;
+                }}
+                #hidden_url {{
+                    text-decoration: none;
+                    color: inherit;
+                }}
+            </style>
+            <body>
+            <a id="hidden_url" href="https://play.google.com/store/apps/details?id=com.appcollection.web2app">
+                <header>
+                    <h1>Web2App</h1>
+                    <p>Convert Websites to Android Apps</p>
+                </header>
+            </a>
+                <div style="text-align: left;">
+                    <p>Dear {username},<br>Congratulations! Your app {appname} is ready to download. Please click the below button:</p>
+                    <a href="https://appcollection.in/InstantWeb2App/downloads/{appname_link}" class="button"><img src="https://web2app.appcollection.in/V06/uploads/{app_logo}" alt="Download" style="width: 25px; height: 25px;"> Download Your App ({appname_link})</a><br>
+                    <br>
+                    <p>Publish your app on the Play Store for just $50!</p>
+                    <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play." class="button button-secondary">Publish Now</a>
+                    <br>
+                    <br>
+                    <h4>- Subrat Gupta<br>Web2App Team</h4>
+                </div>
+            </body>
+        </html>"""
         email_message.attach(MIMEText(html_message, 'html'))
 
         # # Attach the logo
@@ -128,6 +132,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           appname_link = str(id).zfill(4) + '_' + pattern.sub('', row[1]) + '.apk'
           username = row[3]
           recipient_email = row[5]
+          app_logo = row[6]
           while cursor.nextset():
             pass
           email_username = os.environ['EMAIL_USERNAME']
@@ -137,8 +142,8 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           subject = 'Your App is Ready to Download'
           message = f'Hi,\n Please download your app by clicking link: https://appcollection.in/InstantWeb2App/downloads/{appname}'
         
-          send_email(sender_email, sender_password, username, recipient_email, subject, appname, appname_link)
-          send_email(sender_email, sender_password, username, 'isubrat@icloud.com', subject, appname, appname_link)
+          send_email(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link)
+          send_email(sender_email, sender_password, username, 'isubrat@icloud.com', subject, appname, app_logo, appname_link)
 
           # Update the status column to "Updated"
           update_query = "UPDATE app_data SET status = 'email sent' WHERE id = %s"
