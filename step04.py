@@ -98,7 +98,6 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
             session.login(sender_email, sender_password)
             session.sendmail(sender_email, recipient_email, email_message.as_string())
 
-        print(whatsapp_message)
         print("Email sent successfully!")
     except Exception as e:
         print(f"Error: {e}")
@@ -144,15 +143,15 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           sender_password = email_password
           subject = 'Your App is Ready to Download'
 
-          host = os.environ['FTP_SERVER']
-          username = os.environ['FTP_USERNAME']
-          password = os.environ['FTP_PASSWORD']
+          ftp_host = os.environ['FTP_SERVER']
+          ftp_username = os.environ['FTP_USERNAME']
+          ftp_password = os.environ['FTP_PASSWORD']
             
           whatsapp_message = f'''Hey {username}! 🎉
 It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}
 Cheers! 📱'''
 
-          update_message(host, username, password, whatsapp_message)
+          update_message(ftp_host, ftp_username, ftp_password, whatsapp_message)
 
           send_email(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link)
           send_email(sender_email, sender_password, username, 'isubrat@icloud.com', subject, appname, app_logo, appname_link)
