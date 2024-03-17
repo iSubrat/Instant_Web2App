@@ -157,7 +157,8 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           ftp_username = os.environ['FTP_USERNAME']
           ftp_password = os.environ['FTP_PASSWORD']
             
-          whatsapp_message = f'''Hey {username}! 🎉
+          whatsapp_message = f'''<meta charset="UTF-8">
+Hey {username}! 🎉
 It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}
 Cheers! 📱 '''
 
@@ -195,7 +196,7 @@ def update_message(host, username, password, message):
             # Open the file in binary mode for uploading
             with open("whatsapp_message.txt", "rb") as file:
                 # Upload the file to the FTP server
-                ftp.storbinary("STOR whatsapp_message.txt", file)
+                ftp.storbinary("STOR whatsapp_message.html", file)
 
             print("Message updated successfully!")
     except Exception as e:
