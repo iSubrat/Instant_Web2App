@@ -84,6 +84,9 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
             </body>
         </html>"""
         email_message.attach(MIMEText(html_message, 'html'))
+        whatsapp_message = '''Hey {username}! 🎉
+It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://appcollection.in/InstantWeb2App/downloads/{appname_link}
+Cheers! 📱'''
 
         # # Attach the logo
         # with open('logo.png', 'rb') as logo:
@@ -96,8 +99,8 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
         with smtplib.SMTP_SSL(email_host, email_port) as session:
             session.login(sender_email, sender_password)
             session.sendmail(sender_email, recipient_email, email_message.as_string())
-            print(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link)
 
+        print(whatsapp_message)
         print("Email sent successfully!")
     except Exception as e:
         print(f"Error: {e}")
