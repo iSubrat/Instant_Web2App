@@ -133,6 +133,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           appname = row[1]
           pattern = re.compile(r'[^a-zA-Z0-9_]')
           appname_link = str(id).zfill(4) + '_' + pattern.sub('', row[1]) + '.apk'
+          appname_link_whatsapp = str(id).zfill(4) + '_' + pattern.sub('', row[1])
           username = row[3]
           recipient_email = row[5]
           app_logo = row[6]
@@ -149,7 +150,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           password = os.environ['FTP_PASSWORD']
             
           whatsapp_message = '''Hey {username}! 🎉
-It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://appcollection.in/InstantWeb2App/downloads/{appname_link}
+It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/index.html?app={appname_link_whatsapp}
 Cheers! 📱'''
 
           update_message(host, username, password, whatsapp_message)
