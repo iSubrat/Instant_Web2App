@@ -150,7 +150,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           password = os.environ['FTP_PASSWORD']
             
           whatsapp_message = '''Hey {username}! 🎉
-It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/index.html?app={appname_link_whatsapp}
+It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}
 Cheers! 📱'''
 
           update_message(host, username, password, whatsapp_message)
