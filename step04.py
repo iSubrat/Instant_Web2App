@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import uuid
 import smtplib
 import mysql.connector
 from ftplib import FTP
@@ -12,11 +13,16 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
     try:
         email_host = os.environ['EMAIL_HOST']
         email_port = os.environ['EMAIL_PORT']
-        # Setup the email message
+        
+        # Generate a unique message ID
+        message_id = f"<{uuid.uuid4()}@{email_host}>"
+        
+        # Setup the email message with Message-ID header
         email_message = MIMEMultipart()
         email_message['From'] = sender_email
         email_message['To'] = recipient_email
         email_message['Subject'] = subject
+        email_message['Message-ID'] = message_id  # Add Message-ID header
 
         # Styling
         html_message = f"""
