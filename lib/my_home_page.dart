@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://cloudapps.zapto.org/cas'),
+                  url: Uri.parse('https://sites.google.com/view/trangiau-com-vn-shoplienquan/trang-ch%E1%BB%A7'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
