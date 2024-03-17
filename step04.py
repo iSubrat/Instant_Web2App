@@ -105,7 +105,6 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
 
 
 def execute_query(db_host, db_username, db_password, db_database, query):
-    global id, appname, appname_link, username, recipient_email, app_logo
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -149,7 +148,7 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           username = os.environ['FTP_USERNAME']
           password = os.environ['FTP_PASSWORD']
             
-          whatsapp_message = '''Hey {username}! 🎉
+          whatsapp_message = f'''Hey {username}! 🎉
 It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}
 Cheers! 📱'''
 
