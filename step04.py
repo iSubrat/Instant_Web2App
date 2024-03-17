@@ -96,6 +96,7 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
         with smtplib.SMTP_SSL(email_host, email_port) as session:
             session.login(sender_email, sender_password)
             session.sendmail(sender_email, recipient_email, email_message.as_string())
+            print(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link)
 
         print("Email sent successfully!")
     except Exception as e:
