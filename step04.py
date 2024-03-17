@@ -157,9 +157,9 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           ftp_username = os.environ['FTP_USERNAME']
           ftp_password = os.environ['FTP_PASSWORD']
             
-          whatsapp_message = f'''<meta charset="UTF-8">
-Hey {username}! 🎉
-It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}
+          whatsapp_message = f'''<meta charset="UTF-8"><br>
+Hey {username}! 🎉<br>
+It's Subrat from the Web2App Team. Your app, {appname}, is all set for download!<br>Just click this link to grab it: https://web2app.appcollection.in/download.html?app={appname_link_whatsapp}<br><br>
 Cheers! 📱 '''
 
           update_message(ftp_host, ftp_username, ftp_password, whatsapp_message)
