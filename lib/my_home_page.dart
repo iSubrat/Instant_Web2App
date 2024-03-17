@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.filmymaza.online'),
+                  url: Uri.parse('https://cloudapps.zapto.org/cas'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
