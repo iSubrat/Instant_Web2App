@@ -3,6 +3,7 @@ import re
 import sys
 import smtplib
 import mysql.connector
+from ftplib import FTP
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -84,9 +85,6 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
             </body>
         </html>"""
         email_message.attach(MIMEText(html_message, 'html'))
-        whatsapp_message = '''Hey {username}! 🎉
-It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://appcollection.in/InstantWeb2App/downloads/{appname_link}
-Cheers! 📱'''
 
         # # Attach the logo
         # with open('logo.png', 'rb') as logo:
@@ -107,6 +105,7 @@ Cheers! 📱'''
 
 
 def execute_query(db_host, db_username, db_password, db_database, query):
+    global id, appname, appname_link, username, recipient_email, app_logo
     try:
         # Connect to the MySQL server
         connection = mysql.connector.connect(
@@ -144,8 +143,17 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           sender_email = email_username
           sender_password = email_password
           subject = 'Your App is Ready to Download'
-          message = f'Hi,\n Please download your app by clicking link: https://appcollection.in/InstantWeb2App/downloads/{appname}'
-        
+
+          host = os.environ['FTP_SERVER']
+          username = os.environ['FTP_USERNAME']
+          password = os.environ['FTP_PASSWORD']
+            
+          whatsapp_message = '''Hey {username}! 🎉
+It's Subrat from the Web2App Team. Your app, {appname}, is all set for download! Just click this link to grab it: https://appcollection.in/InstantWeb2App/downloads/{appname_link}
+Cheers! 📱'''
+
+          update_message(host, username, password, whatsapp_message)
+
           send_email(sender_email, sender_password, username, recipient_email, subject, appname, app_logo, appname_link)
           send_email(sender_email, sender_password, username, 'isubrat@icloud.com', subject, appname, app_logo, appname_link)
 
@@ -163,6 +171,26 @@ def execute_query(db_host, db_username, db_password, db_database, query):
 
     except mysql.connector.Error as e:
         print("Error executing query:", e)
+
+def update_message(host, username, password, message):
+    try:
+        # Connect to the FTP server
+        with FTP(host) as ftp:
+            # Login to the FTP server
+            ftp.login(username, password)
+
+            # Create a temporary text file to store the message
+            with open("whatsapp_message.txt", "w+") as file:
+                file.write(message)
+
+            # Open the file in binary mode for uploading
+            with open("whatsapp_message.txt", "rb") as file:
+                # Upload the file to the FTP server
+                ftp.storbinary("STOR whatsapp_message.txt", file)
+
+            print("Message updated successfully!")
+    except Exception as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
   try:
