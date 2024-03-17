@@ -111,32 +111,32 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: _buildWebView(),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Get this app live on Play Store',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                  const SizedBox(width: 8),
-                  // Adjust spacing between text and button
-                  ElevatedButton(
-                    onPressed: () async {
-                      const url = 'https://appcollection.in/InstantWeb2App/publish.html';
-                      if (await canLaunch(url)) {
-                        await launch(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    },
-                    child: Text("Publish Now", style: TextStyle(fontSize: 16.0)),
-                  ),
-
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       const Text(
+            //         'Get this app live on Play Store',
+            //         style: TextStyle(color: Colors.white, fontSize: 16.0),
+            //       ),
+            //       const SizedBox(width: 8),
+            //       // Adjust spacing between text and button
+            //       ElevatedButton(
+            //         onPressed: () async {
+            //           const url = 'https://appcollection.in/InstantWeb2App/publish.html';
+            //           if (await canLaunch(url)) {
+            //             await launch(url);
+            //           } else {
+            //             throw 'Could not launch $url';
+            //           }
+            //         },
+            //         child: Text("Publish Now", style: TextStyle(fontSize: 16.0)),
+            //       ),
+            //
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       );
