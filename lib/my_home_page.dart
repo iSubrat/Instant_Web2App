@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.amazon.in/?&tag=googinhydmabk-21&ref=pd_sl_3u81piijyj_e&adgrpid=159067174492&hvpone=&hvptwo=&hvadid=678754928146&hvpos=&hvnetw=g&hvrand=12054807326338822471&hvqmt=e&hvdev=m&hvdvcmdl=&hvlocint=&hvlocphy=9151922&hvtargid=kwd-365295376496&hydadcr=4306_2265530&gad_source=1'),
+                  url: Uri.parse('https://contentpro101.com'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
