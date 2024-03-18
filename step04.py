@@ -141,10 +141,15 @@ def execute_query(db_host, db_username, db_password, db_database, query):
           username = row[3]
           recipient_email = row[5]
           app_logo = row[6]
-          if app_logo==None:
+          
+          try:
+              if len(app_logo)>5:
+                  app_logo_url = f'https://web2app.appcollection.in/V06/uploads/{app_logo}'
+              else:
+                  app_logo_url = 'https://web2app.appcollection.in/icon.png'
+          except Exception as e:
               app_logo_url = 'https://web2app.appcollection.in/icon.png'
-          else:
-              app_logo_url = f'https://web2app.appcollection.in/V06/uploads/{app_logo}'
+       
           while cursor.nextset():
             pass
           email_username = os.environ['EMAIL_USERNAME']
