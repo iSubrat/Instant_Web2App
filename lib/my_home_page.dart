@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://psychobubble.godaddysites.com/'),
+                  url: Uri.parse('https://youtube.com/playlist?list=PLh2_Ojdj57X17O3A-80bJS325BeIqKhKB'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
