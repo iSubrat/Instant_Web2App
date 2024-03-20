@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('http://192.168.1.49'),
+                  url: Uri.parse('https://tinyurl.com/ymjmhse'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
