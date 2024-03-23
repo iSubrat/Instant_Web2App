@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://kitoimagesgenerator.tiiny.site/'),
+                  url: Uri.parse('https://ymkxay40z00tzdiwzt0oow.on.drv.tw/Multimedia%20Interaktif%20IPAS/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
