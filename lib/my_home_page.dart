@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://ymkxay40z00tzdiwzt0oow.on.drv.tw/Multimedia%20Interaktif%20IPAS/'),
+                  url: Uri.parse('https://www.messivsronaldo.app'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
