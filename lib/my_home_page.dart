@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://ffgfg77.my.canva.site/beauty-beauty-website-in-white-grey-modern-elegance-style'),
+                  url: Uri.parse('http://www.itclinicitalia.it'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
