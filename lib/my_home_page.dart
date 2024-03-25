@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.lotus365.vip/m/dashboard'),
+                  url: Uri.parse('https://ffgfg77.my.canva.site/beauty-beauty-website-in-white-grey-modern-elegance-style'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
