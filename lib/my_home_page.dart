@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://corbinmkern.wixsite.com/drawroyale'),
+                  url: Uri.parse('https://www.onlinejyotish.com/telugu-astrology/telugu-jatakam.php'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
