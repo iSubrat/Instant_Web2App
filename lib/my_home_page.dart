@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://firebasestorage.googleapis.com/v0/b/unite-3409c.appspot.com/o/inbound4657534711668817405.htm?alt=media&token=c32336e3-537d-4cd6-ad90-2e9290c72eff&fbclid=IwAR0vxvUabVwBxcgjoszMgL4M3DJR1AERBz4wAHHlKa4NniE5EzcJ-dDuPiA'),
+                  url: Uri.parse('https://corbinmkern.wixsite.com/drawroyale'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
