@@ -82,7 +82,8 @@ def send_email(sender_email, sender_password, username, recipient_email, subject
                     <p>Dear {username},<br>Congratulations! Your app {appname} is ready to download. Please click the below button:</p>
                     <a href="https://appcollection.in/InstantWeb2App/downloads/{appname_link}" class="button"><img src="{app_logo_url}" alt="Download" style="width: 25px; height: 25px;"> Download Your App ({appname_link})</a><br>
                     <br>
-                    <p>Publish your app on the Play Store for just $50!</p>
+                    <p>Monetize your app with ads, in-app purchases, or paid features – start earning now! Publish on the Play Store!</p>
+                    <p>Unlock the potential of your app! Get it on the Play Store today for only $50!</p>
                     <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play." class="button button-secondary">Publish Now</a>
                     <br>
                     <br>
