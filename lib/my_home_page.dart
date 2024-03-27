@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://myshopprime.com/snapkart.tees.com/menc2l9'),
+                  url: Uri.parse('https://ffgfg77.my.canva.site/jojolipcarecosmestics'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
