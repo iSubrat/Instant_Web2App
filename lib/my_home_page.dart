@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('http://hzu3VVlamAYur8J:mw2Di6pzCkylvxo@localhost:12644/storage/emulated/0/yh.html'),
+                  url: Uri.parse('https://www.sharedrop.io/'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
