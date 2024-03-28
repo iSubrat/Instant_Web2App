@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse('https://www.appcreator24.com'),
+                  url: Uri.parse('https:/whatsapp.com.my'),
                 ),
                 initialOptions: _getInAppWebViewOptions(),
                 onWebViewCreated: _onWebViewCreated,
